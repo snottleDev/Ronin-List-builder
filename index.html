@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ronin Buntai Builder</title>
+  <meta name="description" content="Unofficial list builder for Ronin: Skirmish Wargames in the Age of the Samurai (Osprey Wargames 4).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='5' fill='%23B8322A'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='white' font-family='serif'%3E%E6%B5%AA%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="masthead">
+    <div class="brand">
+      <span class="brand-kanji" aria-hidden="true">浪人</span>
+      <div>
+        <h1>Ronin Buntai Builder</h1>
+        <p class="tagline">An unofficial list builder for <cite>Ronin</cite> (Osprey Wargames 4). You'll still need the book to play.</p>
+      </div>
+    </div>
+    <div class="list-bar">
+      <label class="sr-only" for="list-select">Saved Buntai</label>
+      <select id="list-select"></select>
+      <button type="button" id="new-list">New Buntai</button>
+      <button type="button" id="dup-list">Duplicate</button>
+      <button type="button" id="del-list" class="quiet">Delete</button>
+      <button type="button" id="print-list" class="primary">Print roster</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="recruit" aria-labelledby="recruit-h">
+      <h2 id="recruit-h">Buntai</h2>
+      <div class="settings">
+        <label>Name <input id="list-name" type="text" maxlength="60" autocomplete="off"></label>
+        <div class="row">
+          <label>Faction <select id="faction"></select></label>
+          <label class="narrow">Points limit <input id="limit" type="number" min="0" step="25" inputmode="numeric"></label>
+        </div>
+        <p id="faction-blurb" class="blurb"></p>
+        <div id="koryu-settings" hidden>
+          <div class="row">
+            <label>Primary weapon <select id="koryu-primary"></select></label>
+          </div>
+          <div class="row">
+            <label>Secondary weapon <select id="koryu-sec1"></select></label>
+            <label>Secondary weapon <select id="koryu-sec2"></select></label>
+          </div>
+        </div>
+        <div id="kiai-settings" hidden>
+          <label class="inline">Fearsome Kiai (5 pts each, up to 3)
+            <span class="stepper">
+              <button type="button" data-kiai="-1" aria-label="One fewer Kiai">−</button>
+              <output id="kiai-count">0</output>
+              <button type="button" data-kiai="1" aria-label="One more Kiai">+</button>
+            </span>
+          </label>
+        </div>
+        <label>Notes <textarea id="list-notes" rows="2" maxlength="400"></textarea></label>
+      </div>
+
+      <h2>Recruit</h2>
+      <div id="catalogue"></div>
+    </section>
+
+    <section class="roster" aria-labelledby="roster-h">
+      <div class="summary" id="summary" aria-live="polite"></div>
+      <h2 id="roster-h" class="sr-only">Roster</h2>
+      <ol id="roster" class="entries"></ol>
+      <div id="empty" class="empty" hidden>
+        <p>Your Buntai has no models yet. Recruit them from the list on the left. A legal Buntai has 4 to 20 models.</p>
+      </div>
+    </section>
+  </main>
+
+  <section id="print-roster" class="print-only" aria-hidden="true"></section>
+
+  <footer class="foot">
+    <p><cite>Ronin</cite> is © Craig Woodfield and Osprey Publishing. This fan tool isn't affiliated with or endorsed by them. Lists are saved only in this browser.
+      <a href="https://github.com/snottleDev/Ronin-List-builder">Source on GitHub</a></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="rules.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
